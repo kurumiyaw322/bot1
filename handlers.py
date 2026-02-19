@@ -291,11 +291,11 @@ async def cb_pay_create(cb: CallbackQuery):
     code = cb.data.split(":", 1)[1]
 
     if code == "30":
-        days, amount, title = 30, "1.00", "30 дней"
+        days, amount, title = 30, "199.00", "30 дней"
     elif code == "90":
-        days, amount, title = 90, "1.00", "90 дней"
+        days, amount, title = 90, "549.00", "90 дней"
     else:  # 365
-        days, amount, title = 365, "1.00", "1 год"
+        days, amount, title = 365, "2299.00", "1 год"
 
     payment = await create_payment(
         amount_rub=amount,
@@ -371,4 +371,5 @@ async def cb_pay_check(cb: CallbackQuery):
             reply_markup=back_to_menu()
         )
         await cb.answer()
+
 
