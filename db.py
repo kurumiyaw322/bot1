@@ -50,6 +50,12 @@ async def get_user(session: AsyncSession, user_id: int) -> Optional[UserSub]:
     res = await session.execute(select(UserSub).where(UserSub.user_id == user_id))
     return res.scalar_one_or_none()
 
+async def get_user_by_pending_payment(session: AsyncSession, payment_id: str) -> Optional[UserSub]:
+    res = await session.execute(
+        select(UserSub).where(UserSub.pending_payment_id == payment_id)
+    )
+    return res.scalar_one_or_none()
+
 
 async def ensure_user(session: AsyncSession, user_id: int) -> UserSub:
     u = await get_user(session, user_id)
